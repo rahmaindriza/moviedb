@@ -15,4 +15,18 @@ class MovieController extends Controller
         $movies = Movie::latest()->paginate(6);
         return view('homepage', compact('movies'));
     }
+//tampilan detail yg indri buat
+//     public function show($slug)
+// {
+//     $movie = Movie::where('slug', $slug)->firstOrFail();
+//     return view('detail', compact('movie'));
+// }
+
+public function detail($id,$slug)
+    {
+        $movie = Movie::findOrfail($id);
+        return view('detailmovie', compact('movie'));
+    }
+
+
 }

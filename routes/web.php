@@ -15,8 +15,12 @@ use App\Http\Controllers\CategoryController;
 
 
 // });
-Route::get('/', [MovieController::class, 'homepage']);
+//yg indri buat
+//Route::get('/', [MovieController::class, 'homepage'])->name('home');
+//Route::get('/movie/{slug}', [MovieController::class, 'show'])->name('movie.show');
 
+Route::get('/', [MovieController::class, 'homepage']);
+Route::get('movie/{id}/{slug}', [MovieController::class, 'detail']);
 
 
 

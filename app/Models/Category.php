@@ -4,11 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    use HasFactory;
+    //use HasFactory;
 
     // Menggunakan guarded agar semua kolom bisa diisi, kecuali yang dikecualikan (misalnya 'id')
-    protected $guarded = [];
+    //protected $guarded = [];
+
+    public function movie(): HasMany
+    {
+        return $this->hasMany(movie::class);
+    }
+
 }
