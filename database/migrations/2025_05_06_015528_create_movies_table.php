@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->text('synopsis')->nullable();
             $table->foreignId('category_id')->constrained(); //colom foreign key
             $table->year('year');

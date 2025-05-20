@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        // Gunakan paginate agar bisa menggunakan firstItem(), links(), dll.
+        $categories = Category::paginate(10); // 10 item per halaman
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -28,38 +30,48 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'category_name' => 'required|unique:categories',
+            'description' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
+        Category::create($validated);
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil ditambahkan!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'category_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update($validated);
+
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }
