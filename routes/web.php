@@ -1,29 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MovieController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MovieController;
+use Illuminate\Support\Facades\Route;
 
-// Route untuk halaman utama (home)
 // Route::get('/', function () {
-//     return view('home');
-// });
-
-// // Route untuk halaman welcome
-// Route::get('/welcome', function () {
 //     return view('welcome');
-
-
 // });
-//yg indri buat
-//Route::get('/', [MovieController::class, 'homepage'])->name('home');
-//Route::get('/movie/{slug}', [MovieController::class, 'show'])->name('movie.show');
 
 Route::get('/', [MovieController::class, 'homepage']);
-Route::get('movie/{id}/{slug}', [MovieController::class, 'detail']);
 
-
-
-// Route::resource('/category', CategoryController::class);
+Route::resource('/category', CategoryController::class);
 // Route::resource('/movie', MovieController::class);
 
+// Route::get('/movie/{slug}', [MovieController::class, 'show'])->name('movies.show');
+// Route::get('/movie/{id}/{slug}', [MovieController::class, 'detail']);
+
+Route::get('movie/{id}/{slug}', [MovieController::class, 'detail']);
+// Route::get('create-movie', [MovieController::class, 'create'])->name('createMovie');
+Route::get('create-movie', [MovieController::class, 'create'])->name('createMovie');
+// Route::get('/create-movie', [MovieController::class, 'create'])->name('createMovie');
+// Route::post('/movie', [MovieController::class, 'store'])->name('movie.store');
+// Route::get('/create-movie', [MovieController::class, 'create'])->name('movies.create');
+// Route::get('/create-movie', [MovieController::class, 'create'])->name('create_movie');
+Route::post('/movies', [MovieController::class, 'store'])->name('movie.store');
+
+// Route::post('/movie', [MovieController::class, 'store']);
