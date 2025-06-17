@@ -14,12 +14,19 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->nullable();
+            $table->string('slug',);
             $table->text('synopsis')->nullable();
-            $table->foreignId('category_id')->constrained(); //colom foreign key
+
+            // kolom foreign key
+            // $table->unsignedBigInteger('category_id');
+            // $table->foreign('category_id')->references('id')->on('categories');
+            // bisa disingkat dengan:
+            $table->foreignId('category_id')->constrained();
+
             $table->year('year');
             $table->text('actors')->nullable();
             $table->string('cover_image')->nullable();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

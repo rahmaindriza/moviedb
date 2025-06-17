@@ -7,36 +7,59 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        // Gunakan paginate agar bisa menggunakan firstItem(), links(), dll.
-        $categories = Category::paginate(10); // 10 item per halaman
-        return view('category.index', compact('categories'));
+        $query = Category::query();
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('category_name', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        }
+        $categories = $query->latest()->paginate(10)->withQueryString();
+        return view('category.index', ['categories' => $categories]);
+
+
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('category.create');
+        $lastId = Category::max('id') ?? 0;
+        $nextId = $lastId + 1;
+        return view('category.create', compact('nextId'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'category_name' => 'required|unique:categories',
+            'category_name' => 'required|unique:categories,category_name|min:3',
             'description' => 'required',
         ]);
 
         Category::create($validated);
-        return redirect()->route('category.index')->with('success', 'Kategori berhasil ditambahkan!');
+
+        return redirect()->route('category.index')->with([
+            'message' => 'Data berhasil ditambahkan',
+            'alert-type' => 'primary'
+        ]);
+    }
+
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Category $category)
+    {
+        //
     }
 
     /**
@@ -44,8 +67,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
-        return view('category.edit', compact('category'));
+        $categories = Category::find($id);
+        return view('category.edit',compact('categories'));
     }
 
     /**
@@ -53,15 +76,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'category_name' => 'required',
-            'description' => 'required',
+        $categories = Category::find($id);
+        $categories->category_name = $request->category_name;
+        $categories->description = $request->description;
+        $categories->update();
+
+        return redirect()->route('category.index')->with([
+            'message' => 'Data berhasil diedit',
+            'alert-type' => 'warning'
         ]);
 
-        $category = Category::findOrFail($id);
-        $category->update($validated);
-
-        return redirect()->route('category.index')->with('success', 'Kategori berhasil diupdate!');
     }
 
     /**
@@ -69,9 +93,14 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $categories = Category::find($id);
+        $categories->delete();
+        // return redirect()->route('category.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('category.index')->with([
+            'message' => 'Data berhasil dihapus',
+            'alert-type' => 'danger' // merah
+        ]);
 
-        return redirect()->route('category.index')->with('success', 'Kategori berhasil dihapus.');
+
     }
 }
