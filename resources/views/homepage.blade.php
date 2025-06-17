@@ -8,7 +8,11 @@
 {{session('success')}}
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
 @endif
 
 <div class="row">

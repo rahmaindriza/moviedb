@@ -20,7 +20,10 @@
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+<<<<<<< HEAD
                 @auth
+=======
+>>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
                 <li class="nav-item">
                 <a class="nav-link" href="{{ route('createMovie')}}">Input Movie</a>
                 </li>
@@ -32,6 +35,7 @@
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu">
@@ -53,6 +57,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">Login</a>
               </li>
+=======
+                    Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </li>
+>>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
 
               @endauth
 
