@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
-<<<<<<< HEAD
-=======
+
     // public function index()
     // {
     //     $movies = Movie::with('category')->paginate(10);
@@ -124,7 +123,7 @@ class MovieController extends Controller
     //     return $slug;
     // }
 
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
     //apak
     public function homepage()
     {
@@ -139,8 +138,6 @@ class MovieController extends Controller
     }
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -156,7 +153,8 @@ class MovieController extends Controller
 
 
 
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
+
     public function create()
     {
         $categories = Category::all();
@@ -165,8 +163,6 @@ class MovieController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-=======
         // $validated = $request->validate(
         //     [
         //         'title' => 'required|string|max:255',
@@ -205,7 +201,7 @@ class MovieController extends Controller
 
 
 
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
         $request->validate([
             'title' => 'required',
             'synopsis' => 'required',
@@ -216,11 +212,10 @@ class MovieController extends Controller
         ]);
 
         $coverPath = $request->file('cover_image')->store('covers', 'public');
-<<<<<<< HEAD
-=======
+
         // $coverPath = $request->file('cover_image')->store('public/covers');
         // $coverUrl = Storage::url($coverPath);
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
 
         Movie::create([
             'title' => $request->title,
@@ -229,18 +224,18 @@ class MovieController extends Controller
             'category_id' => $request->category_id,
             'year' => $request->year,
             'actors' => $request->actors,
-<<<<<<< HEAD
+
             'cover_image' => $coverPath,
-=======
+
             // 'cover_image' => $coverUrl,
             'cover_image' => $coverPath, // hanya simpan 'covers/namafile.jpg'
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
         ]);
 
         return redirect('/')->with('success', 'Movie berhasil ditambahkan!');
     }
 
-<<<<<<< HEAD
+
     public function dataMovie()
     {
         $movies = Movie::with('category')->latest()->paginate(10);
@@ -306,9 +301,6 @@ class MovieController extends Controller
             abort(403, 'Error! Anda bukan Admin');
         }
     }
-=======
 
-
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
 
 }

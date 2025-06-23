@@ -79,7 +79,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Tambah</button>
+                <button type="submit" class="btn btn-primary">Tambah Data</button>
+
             </form>
         </div>
     </div>

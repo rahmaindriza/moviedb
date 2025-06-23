@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-<<<<<<< HEAD
+
 <h1 class="mb-4 fw-bold">Input Data Movie</h1>
     <div class="col-lg-12">
 
@@ -11,11 +11,11 @@
 
         <a href="/data-movie" class="btn btn-success mb-4">Lihat Data Movie</a>
 
-=======
+
 <div class="row">
     <div class="col-12">
         <h1 class="h2 mb-4 border-bottom pb-2">Input Data Movie</h1>
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
         <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
             @csrf
 
@@ -75,25 +75,17 @@
             </div>
 
             <div class="row">
-<<<<<<< HEAD
+
                 <div class="offset-sm-2 col-sm-10 mb-4">
                     <button type="submit" class="btn btn-success">Tambah Data</button>
-=======
-                <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Tambah</button>
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+
+
                 </div>
             </div>
         </form>
     </div>
 </div>
 @endsection
-<<<<<<< HEAD
-=======
-
-
-
-
 
 
 {{-- @extends('layouts.template')
@@ -181,4 +173,4 @@
     </div>
 </div>
 @endsection --}}
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
+

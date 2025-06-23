@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 
 <header>
-=======
-{{-- <header>
->>>>>>> 2bfdd808c2f53f4f8940aa2f69949dacaa1ad5fc
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-2">
         <div class="container-fluid">
@@ -43,4 +39,4 @@
             </div>
         </div>
     </nav>
-</header> --}}
+</header>

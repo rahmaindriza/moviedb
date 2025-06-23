@@ -28,7 +28,7 @@
     <main class="flex-shrink-0">
         <div class="container">
             @yield('content')
-            @yield('container')
+            {{-- @yield('container') --}}
 
         </div>
     </main>
